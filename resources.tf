@@ -284,9 +284,10 @@ resource "null_resource" "nullremote2"  {
      host     = aws_instance.web.public_ip
   }
   
-  provisioner "file" {
-    content     = "<img src='http://${aws_cloudfront_distribution.s3_distribution.domain_name}/my.png'>"
-    destination = "/var/www/html/index.php"
-  }
+#  provisioner "remote-exec" {
+#    inline = [
+#      "sudo  echo '<img src='http://${aws_cloudfront_distribution.s3_distribution.domain_name}/my.png'>' >> /var/www/html/index.php",
+#    ]
+#  }
 }
 
