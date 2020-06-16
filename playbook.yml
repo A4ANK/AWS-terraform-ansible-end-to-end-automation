@@ -1,0 +1,31 @@
+---
+- name: installing and starting service of httpd
+  hosts: webserver
+  become: yes
+  gather_facts: no
+  #  pre_tasks:
+          #  - name: 'Installing python first'
+    #    raw: 'sudo yum remove python3 -y'
+
+  tasks:
+  - name: Installation of httpd
+    yum:
+      name: httpd
+      state: latest
+  
+  - name: Installation of git
+    yum: 
+      name: git
+      state: latest
+
+  - name: Installation of php
+    yum: 
+      name: php
+      state: latest
+
+  - name: httpd is started
+    service:
+      name: httpd
+      state: started
+      enabled: yes
+  
